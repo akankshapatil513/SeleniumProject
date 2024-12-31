@@ -5,17 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Test1 {
-    public static void main(String[] args) {
-
+    public static void main(String[] args)
+    {
     CoorectUsernamecorrectPassword();
-    correcUsernameandincorrectPassword();
+    CorrecUsernameandIncorrectPassword();
     IncorrectUsernameandCorrectpassword();
     IncorrectusernameandIncorrectpassword();
     correctusernameNoPassword();
     Nousernameandcorrectpassword();
     NousernameNoPassword();
-
-
 
     }
 
@@ -31,7 +29,8 @@ public class Test1 {
 
    }
 
-   static void correcUsernameandincorrectPassword() {
+   static void CorrecUsernameandIncorrectPassword()
+   {
        ChromeDriver driver = new ChromeDriver();
        driver.get("https://www.saucedemo.com");
        driver.findElement(By.xpath("//*[@id=\"user-name\"]")).sendKeys("standard_user");
