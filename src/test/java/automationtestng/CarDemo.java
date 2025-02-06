@@ -1,4 +1,4 @@
-package automation;
+package automationtestng;
 
 public class CarDemo {
     public static void main(String[] args) {

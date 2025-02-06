@@ -1,10 +1,7 @@
-package PageObjectModel;
+package automationtestng;
 
 import Module.*;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.File;
@@ -12,10 +9,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class LoginBaseClass {
+class Base {
 
     public static ChromeDriver driver;
-    Properties envprop = new Properties();
+   public Properties envprop = new Properties();
     public LoginModule loginModule;
     public AddCartModule addCartModule;
    public RemoveCartItemModule removcartitemModule;
@@ -43,6 +40,7 @@ public class LoginBaseClass {
     {
         driver = new ChromeDriver();
         driver.get(envprop.getProperty("url"));
+        //driver.get(envprop.getProperty("user"));
         loginModule=new LoginModule(driver);
       addCartModule=new AddCartModule(driver);
       removcartitemModule=new RemoveCartItemModule(driver);

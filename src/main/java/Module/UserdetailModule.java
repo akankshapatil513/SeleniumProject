@@ -8,8 +8,6 @@ import org.testng.Assert;
 
 import java.util.List;
 
-import static PageObjectModel.LoginBaseClass.driver;
-
 public class UserdetailModule {
 
     WebDriver driver;

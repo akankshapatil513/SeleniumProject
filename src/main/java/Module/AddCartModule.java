@@ -18,7 +18,7 @@ public class AddCartModule {
     {
         this.driver=driver;
     }
-    @Test(priority = 2, dependsOnMethods = "loginPage")
+
     public void addcart() throws InterruptedException
     {
         driver.findElement(AddCartPageLocator.addproduct1).click();
