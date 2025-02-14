@@ -1,29 +1,26 @@
-Feature:Login Functionality
+Feature: Login Functionality
 
   Background:
-    Given user open chrome
-    And open url "https://www.saucedemo.com"
+    Given opens Chrome browser
+    And open url to "https://www.saucedemo.com"
 
-    @Sanity @Regression
-  Scenario: validate succesful login
-    When user enter username "standard_user"
-    And user enter password "secret_sauce"
-    And user enter login button
-    Then user validate succesful login
-    And user validate Login page
+  @Sanity
+  Scenario: Validate successful login
+    When enters username "standard_user"
+    And enters password "secret_sauce"
+    And clicks the login button
+    Then should be logged in successfully
 
-  Scenario Outline:
-    When user enter "<username>"
-    And user enter "<password>"
-    And user enter login button
-    Then user validate error page "<errormsg>"
+  Scenario Outline: Validate invalid login
+    When enters username "<username>"
+    And enters password "<password>"
+    And clicks the login button
+    Then should see error message "<errormsg>"
 
     Examples:
-
-    username       |password       |errormsg
-    "standard_user"|""             |"password is required"
-    ""             |"secret_sauce" |"username is required"
-
+      | username      | password     | errormsg             |
+      | standard_user |              | Epic sadface: Password is required |
+      |              | secret_sauce | Epic sadface: Username is required |
 
 
 

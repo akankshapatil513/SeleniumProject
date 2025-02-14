@@ -14,7 +14,7 @@ class Base {
     public static ChromeDriver driver;
    public Properties envprop = new Properties();
     public LoginModule loginModule;
-    public AddCartModule addCartModule;
+    public  AddCartModule addCartModule;
    public RemoveCartItemModule removcartitemModule;
     public CheckOutModule checkoutModule;
     public UserdetailModule userdetailModule;
@@ -42,7 +42,7 @@ class Base {
         driver.get(envprop.getProperty("url"));
         //driver.get(envprop.getProperty("user"));
         loginModule=new LoginModule(driver);
-      addCartModule=new AddCartModule(driver);
+    addCartModule=new AddCartModule(driver);
       removcartitemModule=new RemoveCartItemModule(driver);
       checkoutModule=new CheckOutModule(driver);
         userdetailModule=new UserdetailModule(driver);

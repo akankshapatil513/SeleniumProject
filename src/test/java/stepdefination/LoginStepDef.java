@@ -1,44 +1,62 @@
 package stepdefination;
 
 import Module.LoginModule;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utilities.DriverFactory;
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 
 public class LoginStepDef {
 
+    WebDriver driver;
     LoginModule loginModule;
 
-    @Given("user open chrome")
-    public void user_open_chrome() {
+    @Given("opens Chrome browser")
+    public void user_opens_chrome_browser() {
         DriverFactory.open_browser();
-        loginModule=new LoginModule(DriverFactory.getDriver());
+        driver = DriverFactory.getDriver();
+        loginModule = new LoginModule(driver);
     }
-    @Given("open url {string}")
-    public void open_url(String string) {
-        DriverFactory.open_url(string);
+
+    @Given("open url to {string}")
+    public void open_url(String url) {
+        DriverFactory.open_url(url);
     }
-    @When("user enter username {string}")
-    public void user_enter_username(String string) {
-            loginModule.enterUsername(string);
-         }
-    @When("user enter password {string}")
-    public void user_enter_password(String string) {
-        loginModule.enterPassword(string);
+
+    @When("enters username {string}")
+    public void user_enters_username(String username) {
+        loginModule.enterUsername(username);
     }
-    @When("user enter login button")
-    public void user_enter_login_button() {
+
+    @And("enters password {string}")
+    public void user_enters_password(String password) {
+        loginModule.enterPassword(password);
+    }
+
+    @And("clicks the login button")
+    public void user_clicks_the_login_button() {
         loginModule.enterloginbtn();
     }
-    @Then("user validate succesful login")
-    public void user_validate_succesful_login() {
-        System.out.println("6");
-    }
-    @Then("user validate Login page")
-    public void user_validate_login_page() {
-        System.out.println("hi 8");
+
+    @Then("should be logged in successfully")
+    public void user_should_be_logged_in_successfully() {
+        // Assuming successful login redirects to inventory page
+        String expectedURL = "https://www.saucedemo.com/inventory.html";
+        Assert.assertEquals("Login was unsuccessful!", expectedURL, driver.getCurrentUrl());
     }
 
+    @Then("should see error message {string}")
+    public void user_should_see_error_message(String expectedMessage) {
+        String actualMessage = loginModule.getErrorMessage();
 
+        // If expectedMessage is empty, assert that there is no error message
+        if (expectedMessage.isEmpty()) {
+            Assert.assertTrue("Expected no error message, but found one!", actualMessage.isEmpty());
+        } else {
+            Assert.assertEquals("Error message does not match!", expectedMessage, actualMessage);
+        }
+    }
 }

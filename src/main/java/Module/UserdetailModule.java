@@ -14,22 +14,46 @@ public class UserdetailModule {
 
     public UserdetailModule(WebDriver driver)
 
+
     {
         this.driver=driver;
     }
-
-    public void userDetail()
+    public void enterfirstname()
     {
         driver.findElement(UserDetailsLocator.firstname).sendKeys("Akanksha");
+
+    }
+    public void enterlastname()
+    {
         driver.findElement(UserDetailsLocator.lastname).sendKeys("patil");
+
+    }
+    public void enterpincode()
+    {
         driver.findElement(UserDetailsLocator.postcode).sendKeys("415212");
-        driver.findElement(UserDetailsLocator.acontinue).click();
+
     }
 
+    public void continuebutton()
+    {
+        driver.findElement(UserDetailsLocator.acontinue).click();
+
+    }
     public void getErrorMsgUserDetails()
     {
         List<WebElement> checkoutItems = driver.findElements(By.className("cart_item"));
         Assert.assertEquals(checkoutItems.size(), 2, "The number of products during checkout is incorrect.");
 
     }
+
+
+    public void userDetail()
+    {
+        enterfirstname();
+        enterlastname();
+        continuebutton();
+        getErrorMsgUserDetails();
+    }
+
+
 }

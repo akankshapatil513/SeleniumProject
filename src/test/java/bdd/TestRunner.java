@@ -8,9 +8,14 @@ import org.junit.runner.Runner;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "Features/addcart.feature",
+        features =
+                "Features/login.feature",
+
         glue="stepdefination",
-           dryRun= true
+           plugin="com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+
+           dryRun= false
+
             //tags="@smoke"
 )
 public class TestRunner {

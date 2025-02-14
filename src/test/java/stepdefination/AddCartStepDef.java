@@ -1,40 +1,65 @@
 package stepdefination;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import Module.AddCartModule;
+import Module.LoginModule;
+import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
+import utilities.DriverFactory;
 
 public class AddCartStepDef {
+    WebDriver driver;
+    AddCartModule addCartModule;
+    LoginModule loginModule;
 
-    @Given("open url \"https:\\/\\/www.saucedemo.com")
-    public void open_url_https_www_saucedemo_com() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @When("user logins succesfully")
-    public void user_logins_succesfully() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @When("add one item in cart")
-    public void add_one_item_in_cart() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @When("add another item in cart")
-    public void add_another_item_in_cart() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Then("user can see container count")
-    public void user_can_see_container_count() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Then("user can validate cart items")
-    public void user_can_validate_cart_items() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public AddCartStepDef() {
+        System.out.println("Initializing AddCartStepDef...");
+        this.driver = DriverFactory.getDriver();
+        this.loginModule = new LoginModule(this.driver);
+        this.addCartModule = new AddCartModule(this.driver);
     }
 
+    @Given("user opens chrome")
+    public void user_open_chrome() {
+        System.out.println("Opening browser in step definition...");
+        DriverFactory.open_browser();
+        this.driver = DriverFactory.getDriver();
+        this.loginModule = new LoginModule(this.driver);
+    }
+
+    @And("open url{string}")
+    public void open_url(String url) {
+        System.out.println("Opening URL: " + url);
+        DriverFactory.open_url(url);
+    }
+
+    @And("user enters username {string}")
+    public void user_enter_username(String username) {
+        loginModule.enterUsername(username);
+    }
+
+    @And("user enters password {string}")
+    public void user_enter_password(String password) {
+        loginModule.enterPassword(password);
+    }
+
+    @And("user enters login button")
+    public void user_enter_login_button() {
+        loginModule.enterloginbtn();
+    }
+
+    @Given("User login in the application")
+    public void user_login_in_the_application() {
+        System.out.println("User successfully logged in.");
+    }
+
+    @And("add one item in cart")
+    public void add_one_item_in_cart() throws InterruptedException {
+
+        addCartModule.addcart();
+        System.out.println("items added");
+    }
 }
+
+
+
+
