@@ -1,10 +1,11 @@
 package automationtestng;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+
+import Module.LoginModule;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.DriverFactory;
 
@@ -16,12 +17,28 @@ public class SauceDemo extends Base {
 
     @Test(priority = 1)
     public void loginPage() throws IOException {
-        loginModule.login(envprop.getProperty("username"),envprop.getProperty("password"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        File shot=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(shot,new File("F:\\Drivers\\Bluetooth\\.jpg"));
+//        loginModule.login(envprop.getProperty("username"),envprop.getProperty("password"));
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//        File shot=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(shot,new File("F:\\Drivers\\Bluetooth\\.jpg"));
 
         //Assert.assertEquals(loginModule.getErrorMessage(), expectederrormsg);
+
+        loginModule.enterUsername("standard_user");
+        loginModule.enterPassword("secret_sauce");
+        loginModule.enterloginbtn();
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
+
+    }
+    @Test(dataProvider = "Logindata")
+    public void testInvalidLogin(String username, String password, String expectedErrorMessage) {
+
+        loginModule.enterUsername(username);
+        loginModule.enterPassword(password);
+        loginModule.enterloginbtn();
+
+        // Validate error message
+        Assert.assertEquals(loginModule.getErrorMessage(), expectedErrorMessage);
     }
 
     @Test(priority =2)
@@ -76,18 +93,6 @@ public class SauceDemo extends Base {
         finisordermodule.geterrormsgFinishorder();
     }
 
-    public static class Hooks {
-        @Before
-        public void setup() {
-            DriverFactory.open_browser();
-        }
 
-        @After
-        public void teardown() {
-            DriverFactory.close_browser(); // Closes only after all scenarios run
-        }
-
-
-            }
 }
 

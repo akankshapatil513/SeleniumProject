@@ -61,11 +61,12 @@ class Base {
     {
         Object[][] testdata=
                 {
-                       {"standard_user","secret_sauce",""},
-                      // {"standard_user","secret_sace" ,"Epic sadface: Username and password do not match any user in this service"},
-                    //{"standarduser","secret_sauce" ,"Epic sadface: Username and password do not match any user in this service"},
-//                       {"","secret_sauce","Epic sadface: Username is required"},
-//                        {"standard_user","","Epic sadface: Password is required"}
+                       {
+                          "standard_user","secret_sauce",""},
+                       {"standard_user","secret_sace" ,"Epic sadface: Username and password do not match any user in this service"},
+                    {"standarduser","secret_sauce" ,"Epic sadface: Username and password do not match any user in this service"},
+                      {"","secret_sauce","Epic sadface: Username is required"},
+                        {"standard_user","","Epic sadface: Password is required"}
                 };
         return testdata;
     }
