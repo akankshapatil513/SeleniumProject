@@ -9,12 +9,13 @@ import org.junit.runner.Runner;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features =
-                "Features/login.feature",
+                "Features",
 
         glue="stepdefination",
-           plugin="com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+      //  plugin="com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+        plugin = { "pretty", "html:target/cucumber-reports", "rerun:target/rerun.txt" }, // Capture failed scenarios
 
-           dryRun= false
+        dryRun= false
 
             //tags="@smoke"
 )

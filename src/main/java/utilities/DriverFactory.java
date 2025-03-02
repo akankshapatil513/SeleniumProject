@@ -26,7 +26,7 @@ public class DriverFactory {
 
     public static void close_browser() {
         if (driver != null) {
-            driver.quit();
+            driver.close();
             driver = null;  // Reset driver instance
         }
     }

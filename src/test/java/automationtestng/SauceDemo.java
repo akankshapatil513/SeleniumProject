@@ -49,6 +49,7 @@ public class SauceDemo extends Base {
         addCartModule.geterrormsgaddcart();
         File shot=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(shot,new File("F:\\Drivers\\Bluetooth\\d.jpg"));
+        driver.get("https://username:password@google.com");
 
     }
 

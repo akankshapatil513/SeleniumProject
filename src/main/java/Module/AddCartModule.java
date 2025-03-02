@@ -46,9 +46,4 @@ public class AddCartModule {
       viewcontainer();
       geterrormsgaddcart();
     }
-
-
-
-
-
 }

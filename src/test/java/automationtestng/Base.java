@@ -1,6 +1,9 @@
 package automationtestng;
 
 import Module.*;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
@@ -50,6 +53,16 @@ class Base {
 
 
     }
+//    @AfterMethod
+//    public void reports()
+//    {
+//        ExtentReports extent;
+//        extent = new ExtentReports();
+//        ExtentTest test = extent.createTest("Login Test");
+//        test.log(Status.PASS, "Test Passed");
+//        extent.flush();
+//
+//    }
 
     @AfterMethod
     public void close()
